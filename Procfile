@@ -1,1 +1,1 @@
-web: python collect-data.py
+web: gunicorn collect-data:app
