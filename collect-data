@@ -1,0 +1,21 @@
+from flask import Flask, request, render_template
+import pickle
+from sklearn.ensemble import RandomForestRegressor
+from geocoding_api import OneMapSearch, Searcher, compute_nearest_mrt_dist, compute_distance_city_hall
+import execute_model
+import json
+import os
+import pandas as pd
+import numpy as np
+import requests
+import sys
+
+app = Flask(__name__)
+
+@app.route('/')
+def flask_homepage():
+	return(render_template('homepage.html'))
+
+@app.route('/collect_data', methods = ['POST'])
+def collect_data():
+	error_messages_list = []
